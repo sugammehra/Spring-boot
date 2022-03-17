@@ -6,7 +6,7 @@ agent any
 stages {
 stage('git repo & clean') {
 steps {
-  //bat "rmdir /s /q SpringBoot-RestAPI Pipeline"
+  bat "rmdir /s /q SpringBoot-RestAPI Pipeline"
   bat "git clone https://github.com/sugammehra/Spring-boot.git"
   bat "mv clean -f SpringBoot-RestAPI Pipeline"
 }
