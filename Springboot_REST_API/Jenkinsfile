@@ -4,20 +4,28 @@ agent any
 
 
 stages {
-stage('Build') {
+stage('git repo & clean') {
 steps {
-echo 'Building..'
+  //bat "rmdir /s /q SpringBoot-RestAPI Pipeline"
+  bat "git clone https://github.com/sugammehra/Spring-boot.git"
+  bat "mv clean -f SpringBoot-RestAPI Pipeline"
 }
 }
-stage('Test') {
+stage('install') {
 steps {
-echo 'Testing..'
+  bat "mvn install -f SpringBoot-RestAPI Pipeline"
 }
 }
-stage('Deploy') {
-steps {
-echo 'Deploying....'
+stage('test') {
+  steps {
+  bat "mvn test -f SpringBoot-RestAPI Pipeline"
+  }
 }
+  stage('package') {
+  steps {
+  bat "mvn package -f SpringBoot-RestAPI Pipeline"
+  }
 }
+  
 }
 }
